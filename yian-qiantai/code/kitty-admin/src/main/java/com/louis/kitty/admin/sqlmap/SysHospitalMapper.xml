@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.louis.kitty.admin.dao.SysHospitalMapper">
+  <resultMap id="BaseResultMap" type="com.louis.kitty.admin.model.SysHospital">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="district" jdbcType="VARCHAR" property="district" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="hospitalAddres" jdbcType="VARCHAR" property="hospitalAddres" />
+    <result column="grade" jdbcType="VARCHAR" property="grade" />
+    <result column="outpatientVolume" jdbcType="VARCHAR" property="outpatientVolume" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />   
+  </resultMap>
+  <sql id="Base_Column_List">
+    id,province,district,name,hospitalAddres,grade,outpatientVolume,remarks
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from mark_hospital
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <insert id="insertSelective" parameterType="com.louis.kitty.admin.model.SysHospital">
+    insert into mark_hospital
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="province != null">
+        province,
+      </if>    
+      <if test="district != null">
+        district,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="hospitalAddres != null">
+        hospitalAddres,
+      </if>
+      <if test="grade != null">
+        grade,
+      </if>
+      <if test="outpatientVolume != null">
+        outpatientVolume,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+     </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null">
+        #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+       #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalAddres != null">
+        #{hospitalAddres,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="outpatientVolume != null">
+        #{outpatientVolume,jdbcType=VARCHAR},
+      </if>
+       <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR}, 
+       </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.louis.kitty.admin.model.SysHospital">
+    update mark_hospital
+    <set>
+      <if test="province != null">
+        province=#{province,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null">
+       district= #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+       name=#{name,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalAddres != null">
+       hospitalAddres= #{hospitalAddres,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+       grade=#{grade,jdbcType=VARCHAR},
+      </if>      
+      <if test="outpatientVolume != null">
+        outpatientVolume=#{outpatientVolume,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        remarks=#{remarks,jdbcType=VARCHAR}, 
+       </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.louis.kitty.admin.model.SysHospital">
+    update mark_hospital
+    set
+        province=#{province,jdbcType=VARCHAR},    
+        district= #{district,jdbcType=VARCHAR},
+        name=#{name,jdbcType=VARCHAR},     
+        hospitalAddres= #{hospitalAddres,jdbcType=VARCHAR},     
+        grade #{grade,jdbcType=VARCHAR},      
+        outpatientVolume=#{outpatientVolume,jdbcType=VARCHAR}, 
+        remarks=#{remarks,jdbcType=VARCHAR},
+     where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="findPage" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mark_hospital
+  </select>
+    <select id="findPageByFilters" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+     from mark_hospital
+    <where>
+     	1=1
+    <if test="name != null and name != '' ">
+	    and name like concat('%',#{name},'%')
+	</if>
+	<if test="province != null and province != '' ">
+		and province like concat('%',#{province},'%')
+	</if>
+    <if test="district != null and district != '' ">
+	    and district like concat('%',#{district},'%')
+	</if>
+	<if test="grade != null and grade != '' ">
+		and grade like concat('%',#{grade},'%')
+	</if>
+	</where>
+  </select>
+  <select id="findPageByLabel" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	<bind name="pattern" value="'%' + _parameter.name + '%'" />
+  	select 
+    <include refid="Base_Column_List" />
+     from mark_hospital
+     where name like #{pattern}
+  </select>
+  <select id="findByLable" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mark_hospital
+    where name = #{name,jdbcType=VARCHAR}
+  </select>
+   <select id="findByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mark_hospital
+    where name = #{name,jdbcType=VARCHAR}
+  </select>
+
+</mapper>

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.louis.kitty.admin.dao.CardProductInstallationMapper">
+  <resultMap id="BaseResultMap" type="com.louis.kitty.admin.model.CardProductInstallation">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="customercode" jdbcType="VARCHAR" property="customercode" />
+    <result column="requirements" jdbcType="VARCHAR" property="requirements" />
+    <result column="selftest" jdbcType="VARCHAR" property="selftest" />
+    <result column="usertraining" jdbcType="VARCHAR" property="usertraining" />
+    <result column="logoplacement" jdbcType="TIMESTAMP" property="logoplacement" />
+    <result column="installconclusion" jdbcType="VARCHAR" property="installconclusion" />
+    <result column="installer" jdbcType="VARCHAR" property="installer" />
+    <result column="installdate" jdbcType="DATE" property="installdate" />
+    <result column="acceptor" jdbcType="VARCHAR" property="acceptor" />
+    <result column="acceptdate" jdbcType="DATE" property="acceptdate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id,customercode,requirements,selftest,usertraining,logoplacement,installconclusion,installer,installdate,acceptor,acceptdate
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from card_productinstallation
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from card_productinstallation
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+   <delete id="deleteByCustomercode" parameterType="java.lang.String">
+    delete from card_productinstallation
+    where customercode = #{customercode,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.louis.kitty.admin.model.CardProductInstallation">
+    insert into card_productinstallation (id,customercode,requirements,selftest,usertraining,logoplacement,installconclusion,installer,installdate,acceptor,acceptdate)
+     values 
+      ( #{id,jdbcType=BIGINT}, #{customercode,jdbcType=VARCHAR}, #{requirements,jdbcType=VARCHAR}, 
+      	#{selftest,jdbcType=VARCHAR},#{usertraining,jdbcType=VARCHAR}, #{logoplacement,jdbcType=TIMESTAMP},  
+      	#{installconclusion,jdbcType=VARCHAR}, #{installer,jdbcType=VARCHAR}, #{installdate,jdbcType=DATE}, 
+      	#{acceptor,jdbcType=VARCHAR},#{acceptdate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.louis.kitty.admin.model.CardProductInstallation">
+    insert into card_productinstallation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+ 	  <if test="customercode != null">
+        customercode,
+      </if>
+      <if test="requirements != null">
+        requirements,
+      </if>   
+      <if test="selftest != null">
+        selftest,
+      </if>
+      <if test="usertraining != null">
+        usertraining,
+      </if>
+      <if test="logoplacement != null">
+        logoplacement,
+      </if>
+      <if test="installconclusion != null">
+        installconclusion,
+      </if>
+ 	  <if test="installer != null">
+        installer,
+      </if> 
+      <if test="installdate != null and installdate != ''">
+        installdate,
+      </if>
+      <if test="acceptor != null">
+        acceptor,
+      </if> 
+      <if test="acceptdate != null and acceptdate != ''">
+        acceptdate,
+      </if> 
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="customercode != null">
+       #{customercode,jdbcType=VARCHAR},
+      </if>
+      <if test="requirements != null">
+       #{requirements,jdbcType=VARCHAR},
+      </if>
+      <if test="selftest != null">
+        #{selftest,jdbcType=VARCHAR},
+      </if>
+      <if test="usertraining != null">
+        #{usertraining,jdbcType=VARCHAR},
+      </if>
+      <if test="logoplacement != null">
+        #{logoplacement,jdbcType=TIMESTAMP},
+      </if>
+      <if test="installconclusion != null">
+        #{installconclusion,jdbcType=VARCHAR},
+      </if>
+      <if test="installer != null">
+        #{installer,jdbcType=VARCHAR},
+      </if>
+       <if test="installdate != null and installdate != ''">
+        #{installdate,jdbcType=DATE}, 
+       </if>
+       <if test="acceptor != null">
+        #{acceptor,jdbcType=VARCHAR},
+       </if>
+       <if test="acceptdate != null and acceptdate != ''">
+        #{acceptdate,jdbcType=DATE},
+       </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.louis.kitty.admin.model.CardProductInstallation">
+    update card_productinstallation
+    <set>
+      <if test="customercode != null">
+       customercode=#{customercode,jdbcType=VARCHAR},
+      </if>
+      <if test="requirements != null">
+       requirements=#{requirements,jdbcType=VARCHAR},
+      </if>
+      <if test="selftest != null">
+       selftest= #{selftest,jdbcType=VARCHAR},
+      </if>
+      <if test="usertraining != null">
+        usertraining=#{usertraining,jdbcType=VARCHAR},
+      </if> 
+      <if test="logoplacement != null">
+       logoplacement= #{logoplacement,jdbcType=TIMESTAMP},
+      </if>     
+      <if test="installconclusion != null">
+        installconclusion=#{installconclusion,jdbcType=VARCHAR},
+      </if>
+      <if test="installer != null">
+        installer=#{installer,jdbcType=VARCHAR},
+      </if>
+      <if test="installdate != null and installdate != ''">
+        installdate=#{installdate,jdbcType=DATE}, 
+       </if>
+       <if test="acceptor != null">
+        acceptor = #{acceptor,jdbcType=VARCHAR},
+       </if>
+       <if test="acceptdate != null and acceptdate != ''">
+        acceptdate = #{acceptdate,jdbcType=DATE},
+       </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.louis.kitty.admin.model.CardProductInstallation">
+    update card_productinstallation
+    set
+    	customercode=#{customercode,jdbcType=VARCHAR},
+        requirements=#{requirements,jdbcType=VARCHAR},         
+        selftest= #{selftest,jdbcType=VARCHAR},  
+        usertraining #{usertraining,jdbcType=VARCHAR},    
+        logoplacement= #{logoplacement,jdbcType=TIMESTAMP},     
+        installconclusion=#{installconclusion,jdbcType=VARCHAR}, 
+        installer=#{installer,jdbcType=VARCHAR},
+        installdate=#{installdate,jdbcType=DATE},
+        acceptor = #{acceptor,jdbcType=VARCHAR},
+        acceptdate = #{acceptdate,jdbcType=DATE}        
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="findPage" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from card_productinstallation
+  </select>
+   <select id="findPageByLabel" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	<bind name="pattern" value="'%' + _parameter.customercode + '%'" />
+  	select 
+    <include refid="Base_Column_List" />
+     from card_productinstallation
+     where customercode like #{pattern}
+  </select>
+  <select id="findByLable" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from card_productinstallation
+    where customercode = #{customercode,jdbcType=VARCHAR}
+  </select>
+    <select id="findItem" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from card_productinstallation
+    where customercode = #{customercode,jdbcType=VARCHAR}
+  </select> 
+  <update id="updateByCustomercode" parameterType="com.louis.kitty.admin.model.CardProductInstallation">
+    update card_productinstallation
+    <set>
+      <if test="requirements != null">
+       requirements=#{requirements,jdbcType=VARCHAR},
+      </if>
+      <if test="selftest != null">
+       selftest= #{selftest,jdbcType=VARCHAR},
+      </if>
+      <if test="usertraining != null">
+        usertraining=#{usertraining,jdbcType=VARCHAR},
+      </if> 
+      <if test="logoplacement != null">
+       logoplacement= #{logoplacement,jdbcType=TIMESTAMP},
+      </if>     
+      <if test="installconclusion != null">
+        installconclusion=#{installconclusion,jdbcType=VARCHAR},
+      </if>
+      <if test="installer != null">
+        installer=#{installer,jdbcType=VARCHAR},
+      </if>
+      <if test="installdate != null and installdate != ''">
+        installdate=#{installdate,jdbcType=DATE}, 
+       </if>
+       <if test="acceptor != null">
+        acceptor = #{acceptor,jdbcType=VARCHAR},
+       </if>
+       <if test="acceptdate != null and acceptdate != ''">
+        acceptdate = #{acceptdate,jdbcType=DATE},
+       </if>
+    </set>
+    where customercode = #{customercode,jdbcType=VARCHAR}
+  </update>
+</mapper>

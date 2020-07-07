@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.louis.kitty.admin.dao.CardPersonalRecordMapper">
+  <resultMap id="BaseResultMap" type="com.louis.kitty.admin.model.CardPersonalRecord">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="customercode" jdbcType="VARCHAR" property="customercode" />
+    <result column="hospital" jdbcType="VARCHAR" property="hospital" />
+    <result column="room" jdbcType="VARCHAR" property="room" />
+    <result column="breathetype" jdbcType="VARCHAR" property="breathetype" />
+    <result column="othersA" jdbcType="VARCHAR" property="othersA" />
+    <result column="psgresult" jdbcType="VARCHAR" property="psgresult" />
+    <result column="saturation" jdbcType="VARCHAR" property="saturation" />
+    <result column="complication" jdbcType="VARCHAR" property="complication" />
+    <result column="othersB" jdbcType="VARCHAR" property="othersB" />
+    <result column="parameters" jdbcType="VARCHAR" property="parameters" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id,customercode,hospital,room,breathetype,othersA,psgresult,saturation,complication,othersB,parameters
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from card_personalrecord
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from card_personalrecord
+    where id = #{id,jdbcType=BIGINT}
+   </delete>
+   <delete id="deleteByCustomercode" parameterType="java.lang.String">
+    delete from card_personalrecord
+    where customercode = #{customercode,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.louis.kitty.admin.model.CardPersonalRecord">
+    insert into card_personalrecord (id,customercode,hospital,room,breathetype,othersA,psgresult,saturation,complication,othersB,parameters)
+     values 
+      ( #{id,jdbcType=BIGINT}, #{customercode,jdbcType=VARCHAR}, #{hospital,jdbcType=VARCHAR}, 
+      	#{room,jdbcType=VARCHAR},#{breathetype,jdbcType=VARCHAR}, 
+      	#{othersA,jdbcType=VARCHAR}, #{psgresult,jdbcType=VARCHAR}, #{saturation,jdbcType=VARCHAR}, 
+      	#{complication,jdbcType=VARCHAR}, #{othersB,jdbcType=VARCHAR}, #{parameters,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.louis.kitty.admin.model.CardPersonalRecord">
+    insert into card_personalrecord
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+ 	  <if test="customercode != null">
+        customercode,
+      </if>
+      <if test="hospital != null">
+        hospital,
+      </if>   
+      <if test="room != null">
+        room,
+      </if>
+      <if test="breathetype != null">
+        breathetype,
+      </if>
+      <if test="othersA != null">
+        othersA,
+      </if>
+ 	  <if test="psgresult != null">
+        psgresult,
+      </if> 
+      <if test="saturation != null">
+        saturation,
+      </if>
+      <if test="complication != null">
+        complication,
+      </if>
+       <if test="othersB != null">
+        othersB,
+      </if>
+      <if test="parameters != null">
+        parameters,
+      </if> 
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="customercode != null">
+       #{customercode,jdbcType=VARCHAR},
+      </if>
+      <if test="hospital != null">
+       #{hospital,jdbcType=VARCHAR},
+      </if>
+      <if test="room != null">
+        #{room,jdbcType=VARCHAR},
+      </if>
+      <if test="breathetype != null">
+        #{breathetype,jdbcType=VARCHAR},
+      </if>
+      <if test="othersA != null">
+        #{othersA,jdbcType=VARCHAR},
+      </if>
+      <if test="psgresult != null">
+        #{psgresult,jdbcType=VARCHAR},
+      </if>
+       <if test="saturation != null">
+        #{saturation,jdbcType=VARCHAR}, 
+       </if>
+       <if test="complication != null">
+        #{complication,jdbcType=VARCHAR},
+       </if>
+       <if test="othersB != null">
+        #{othersB,jdbcType=VARCHAR},
+       </if> 
+       <if test="parameters != null">
+        #{parameters,jdbcType=VARCHAR},
+       </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.louis.kitty.admin.model.CardPersonalRecord">
+    update card_personalrecord
+    <set>
+      <if test="customercode != null">
+       customercode=#{customercode,jdbcType=VARCHAR},
+      </if>
+      <if test="hospital != null">
+       hospital=#{hospital,jdbcType=VARCHAR},
+      </if>
+      <if test="room != null">
+       room= #{room,jdbcType=VARCHAR},
+      </if>
+      <if test="breathetype != null">
+        breathetype=#{breathetype,jdbcType=VARCHAR},
+      </if>      
+      <if test="othersA != null">
+        othersA=#{othersA,jdbcType=VARCHAR},
+      </if>
+      <if test="psgresult != null">
+        psgresult=#{psgresult,jdbcType=VARCHAR},
+      </if>
+      <if test="saturation != null">
+        saturation=#{saturation,jdbcType=VARCHAR}, 
+       </if>
+       <if test="complication != null">
+        complication = #{complication,jdbcType=VARCHAR},
+       </if>
+       <if test="othersB != null">
+        othersB=#{othersB,jdbcType=VARCHAR},    
+       </if>
+       <if test="parameters != null">
+        parameters=#{parameters,jdbcType=VARCHAR},    
+       </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.louis.kitty.admin.model.CardPersonalRecord">
+    update card_personalrecord
+    set
+    	customercode=#{customercode,jdbcType=VARCHAR},
+        hospital=#{hospital,jdbcType=VARCHAR},         
+        room= #{room,jdbcType=VARCHAR},         
+        breathetype #{breathetype,jdbcType=VARCHAR},      
+        othersA=#{othersA,jdbcType=VARCHAR}, 
+        psgresult=#{psgresult,jdbcType=VARCHAR},
+        saturation=#{saturation,jdbcType=VARCHAR},
+        complication = #{complication,jdbcType=VARCHAR},
+        othersB=#{othersB,jdbcType=VARCHAR},         
+        parameters=#{parameters,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="findPage" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from card_personalrecord
+  </select>
+  <select id="findPageByLabel" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	<bind name="pattern" value="'%' + _parameter.customercode + '%'" />
+  	select 
+    <include refid="Base_Column_List" />
+    from card_personalrecord
+    where customercode like #{pattern}
+  </select>
+  <select id="findByLable" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from card_personalrecord
+    where customercode = #{customercode,jdbcType=VARCHAR}
+  </select>
+    <select id="findItem" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from card_personalrecord
+    where customercode = #{customercode,jdbcType=VARCHAR}
+  </select>
+  <update id="updateByCustomercode" parameterType="com.louis.kitty.admin.model.CardPersonalRecord">
+    update card_personalrecord
+    <set>
+      <if test="hospital != null">
+       hospital=#{hospital,jdbcType=VARCHAR},
+      </if>
+      <if test="room != null">
+       room= #{room,jdbcType=VARCHAR},
+      </if>
+      <if test="breathetype != null">
+        breathetype=#{breathetype,jdbcType=VARCHAR},
+      </if>      
+      <if test="othersA != null">
+        othersA=#{othersA,jdbcType=VARCHAR},
+      </if>
+      <if test="psgresult != null">
+        psgresult=#{psgresult,jdbcType=VARCHAR},
+      </if>
+      <if test="saturation != null">
+        saturation=#{saturation,jdbcType=VARCHAR}, 
+       </if>
+       <if test="complication != null">
+        complication = #{complication,jdbcType=VARCHAR},
+       </if>
+       <if test="othersB != null">
+        othersB=#{othersB,jdbcType=VARCHAR},    
+       </if>
+       <if test="parameters != null">
+        parameters=#{parameters,jdbcType=VARCHAR},    
+       </if>
+    </set>
+    where customercode = #{customercode,jdbcType=VARCHAR}
+  </update>
+</mapper>

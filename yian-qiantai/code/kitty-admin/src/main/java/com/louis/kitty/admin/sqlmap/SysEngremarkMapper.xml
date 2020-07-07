@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.louis.kitty.admin.dao.SysEngremarkMapper">
+  <resultMap id="BaseResultMap" type="com.louis.kitty.admin.model.SysEngremark">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+     <result column="phone" jdbcType="VARCHAR" property="phone" />
+	 <result column="email" jdbcType="VARCHAR" property="email" />
+	 <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+	 
+
+  </resultMap>
+  <sql id="Base_Column_List">
+    id,remarks,phone,email,createtime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from engremark
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+ 
+
+  
+   <insert id="insertSelective" parameterType="com.louis.kitty.admin.model.SysEngremark">
+    insert into engremark
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+     
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      
+    </trim>
+  </insert>
+</mapper>

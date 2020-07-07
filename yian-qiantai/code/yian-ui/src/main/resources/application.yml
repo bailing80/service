@@ -1,0 +1,68 @@
+server: 
+  tomcat: 
+    uri-encoding: UTF-8
+    max-threads: 1000
+    min-spare-threads: 30
+  port: 9005
+    #context-path: /yian-ui
+#快递100-实时查询接口
+fastservice:
+  customer: "45C58167AC05BEB4B6E7B8132B2CC243"
+  key: "nDyKLnYO2555"
+  faststart: null
+# DataSource
+spring: 
+  datasource: 
+    name: druidDataSource
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid: 
+      driver-class-name: com.mysql.jdbc.Driver
+      #url: jdbc:mysql://rm-2ze46rh92b991z4y6wo.mysql.rds.aliyuncs.com:3306/yianmarket?useUnicode=true&zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=utf-8
+      #url: jdbc:mysql://localhost:3306/yianmarket?useUnicode=true&characterEncoding=utf8&useSSL=false    
+      url: jdbc:mysql://39.105.157.251:3306/yianmarket?useUnicode=true&characterEncoding=utf8&useSSL=false     
+      username: root
+      password: root
+      #username: aeonmed
+      #password: aeonmed@123
+      max-idle: 10
+      max-wait: 60000
+      min-idle: 5
+      initial-size: 5
+      #filters: stat,wall,log4j,config
+      #max-active: 100
+      #initial-size: 1
+      #max-wait: 60000
+      #min-idle: 1
+      #time-between-eviction-runs-millis: 60000
+      #min-evictable-idle-time-millis: 300000
+      #validation-query: select 'x'
+      #test-while-idle: true
+      #test-on-borrow: false
+      #test-on-return: false
+      #pool-prepared-statements: true
+      #max-open-prepared-statements: 50
+      #max-pool-prepared-statement-per-connection-size: 20
+  # spring boot admin
+  application: 
+    name: yian-ui
+  boot: 
+    admin: 
+      client: 
+        url: "http://39.105.157.251:8095"
+        #url: "http://localhost:8095"
+# 开放健康检查接口
+management: 
+  endpoints: 
+    web: 
+      exposure: 
+        include: "*"
+  endpoint: 
+    health: 
+      show-details: ALWAYS
+# pagehelper   
+pagehelper: 
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+ 

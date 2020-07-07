@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.louis.kitty.admin.dao.CardHospitalMapper">
+  <resultMap id="BaseResultMap" type="com.louis.kitty.admin.model.CardHospital">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="customercode" jdbcType="VARCHAR" property="customercode" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="contacts" jdbcType="VARCHAR" property="contacts" />
+    <result column="officephone" jdbcType="VARCHAR" property="officephone" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="office" jdbcType="VARCHAR" property="office" />
+    <result column="officer" jdbcType="VARCHAR" property="officer" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="serialnumber" jdbcType="TIMESTAMP" property="serialnumber" />
+    
+    
+  </resultMap>
+  <sql id="Base_Column_List">
+    id,customercode,name,address,contacts,officephone,telephone,office,officer,createtime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from card_hospital
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from card_hospital
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.louis.kitty.admin.model.CardHospital">
+    insert into card_hospital (id,customercode,name,address,contacts,officephone,telephone,office,officer,createtime)
+     values 
+      ( #{id,jdbcType=BIGINT}, #{customercode,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR},
+      	#{contacts,jdbcType=VARCHAR}, #{officephone,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR},
+      	#{office,jdbcType=VARCHAR}, #{officer,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.louis.kitty.admin.model.CardHospital">
+    insert into card_hospital
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+ 	  <if test="customercode != null">
+        customercode,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="address != null">
+        address,
+      </if> 
+      <if test="contacts != null">
+        contacts,
+      </if>
+      <if test="officephone != null">
+        officephone,
+      </if>
+  	  <if test="telephone != null">
+        telephone,
+      </if> 
+      <if test="office != null">
+        office,
+      </if>
+      <if test="officer != null">
+        officer,
+      </if>
+       <if test="createtime != null">
+        createtime,
+      </if> 
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="customercode != null">
+       #{customercode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+       #{name,jdbcType=VARCHAR},
+      </if>
+       <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+       </if>
+      <if test="contacts != null">
+        #{contacts,jdbcType=VARCHAR},
+      </if>
+      <if test="officephone != null">
+        #{officephone,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="office != null">
+        #{office,jdbcType=VARCHAR},
+       </if>
+       <if test="officer != null">
+        #{officer,jdbcType=VARCHAR}, 
+       </if>
+       <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+       </if> 
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.louis.kitty.admin.model.CardHospital">
+    update card_hospital
+    <set>
+      <if test="customercode != null">
+       customercode=#{customercode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+       name=#{name,jdbcType=VARCHAR},
+      </if>
+       <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+       </if>
+      <if test="contacts != null">
+       contacts= #{contacts,jdbcType=VARCHAR},
+      </if>
+      <if test="officephone != null">
+       officephone=#{officephone,jdbcType=VARCHAR},
+      </if> 
+      <if test="telephone != null">
+        telephone=#{telephone,jdbcType=VARCHAR},
+      </if>     
+      <if test="office != null">
+        office=#{office,jdbcType=VARCHAR},
+      </if>
+      <if test="officer != null">
+        officer=#{officer,jdbcType=VARCHAR}, 
+       </if>
+       <if test="createtime != null">
+        createtime=#{createtime,jdbcType=TIMESTAMP},    
+       </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.louis.kitty.admin.model.CardHospital">
+    update card_hospital
+    set
+    	customercode=#{customercode,jdbcType=VARCHAR},
+        name=#{name,jdbcType=VARCHAR},
+        address = #{address,jdbcType=VARCHAR},         
+        contacts= #{contacts,jdbcType=VARCHAR},         
+        officephone #{officephone,jdbcType=VARCHAR},
+        telephone=#{telephone,jdbcType=VARCHAR},     
+        office=#{office,jdbcType=VARCHAR}, 
+        officer=#{officer,jdbcType=VARCHAR},
+        createtime=#{createtime,jdbcType=TIMESTAMP},         
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="findPage" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from card_hospital
+  </select>
+    <select id="findPageByFilters" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from card_hospital
+    <where>
+     	1=1
+	<if test="customercode != null and customercode != '' ">
+		and customercode like concat('%',#{customercode},'%')
+	</if>
+    <if test="name != null and name != '' ">
+	    and name like concat('%',#{name},'%')
+	</if>
+	<if test="office != null and office != '' ">
+		and office like concat('%',#{office},'%')
+	</if>
+    <if test="address != null and address != '' ">
+	    and address like concat('%',#{address},'%')
+	</if>
+	<if test="telephone != null and telephone != '' ">
+	    and telephone like concat('%',#{telephone},'%')
+	</if>
+	<if test="startTime != null and startTime != '' and endTime != null and endTime != '' ">
+	   <![CDATA[ and DATE_FORMAT(createtime, '%Y-%m-%d') BETWEEN DATE_FORMAT(#{startTime}, '%Y-%m-%d') AND DATE_FORMAT(#{endTime}, '%Y-%m-%d') ]]>
+	</if>
+	</where>
+	order by createtime DESC 	
+  </select>
+  <select id="findPageByLabel" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	<bind name="pattern" value="'%' + _parameter.name + '%'" />
+  	select 
+    <include refid="Base_Column_List" />
+     from card_hospital
+     where name like #{pattern}
+  </select>
+  <select id="findByLable" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from card_hospital
+    where name = #{name,jdbcType=VARCHAR}
+  </select>
+  <select id="findHospital" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from card_productconfig
+    where serialnumber = #{serialnumber,jdbcType=VARCHAR} 
+  </select>
+  <select id="getLatestCustomercode" resultMap="BaseResultMap">
+  	select
+  	<include refid="Base_Column_List" />
+  	from card_hospital 
+  	ORDER BY customercode DESC limit 1
+  </select>
+</mapper>

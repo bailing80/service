@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.louis.kitty.admin.dao.CardXuliehaoMapper">
+  <resultMap id="BaseResultMap" type="com.louis.kitty.admin.model.CardXuliehao">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="prodmodel" jdbcType="VARCHAR" property="prodmodel" />
+    <result column="ceset" jdbcType="VARCHAR" property="ceset" />
+    <result column="serial" jdbcType="VARCHAR" property="serial" />
+    <result column="model" jdbcType="VARCHAR" property="model" />
+    <result column="expiration" jdbcType="VARCHAR" property="expiration" />    
+    <result column="manmade" jdbcType="VARCHAR" property="manmade" />
+  </resultMap>
+  
+
+	 <select id="findxuliehao" parameterType="java.lang.String" resultType="java.lang.String">
+	 <!-- 主要就改了resultMapper改为resultType -->
+	    select prodmodel
+	    from cardxuliehao	    
+	    where serial = #{serial,jdbcType=VARCHAR}
+	 </select>
+  
+ 
+</mapper>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.louis.kitty.admin.dao.SysQRCodeMapper">
+  <resultMap id="BaseResultMap" type="com.louis.kitty.admin.model.SysQRCode">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="qrcodetext" jdbcType="BLOB" property="qrcodetext"  />
+    <result column="pathqrcode" jdbcType="VARCHAR" property="pathqrcode"  />
+    <result column="stats" jdbcType="VARCHAR" property="stats"  />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+  </resultMap>
+   <sql id="Base_Column_List">
+    id,name,qrcodetext,pathqrcode,stats,createtime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_qrcode
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sys_qrcode
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.louis.kitty.admin.model.SysQRCode">
+    insert into sys_qrcode (id,name,qrcodetext,pathqrcode,stats,createtime)
+     values 
+      ( #{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR},
+      	#{qrcodetext,jdbcType=BLOB}, #{pathqrcode,jdbcType=VARCHAR},
+      	#{stats,jdbcType=VARCHAR},#{createtime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.louis.kitty.admin.model.SysQRCode">
+    insert into sys_qrcode
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="qrcodetext != null">
+        qrcodetext,
+      </if>
+      <if test="pathqrcode != null">
+        pathqrcode,
+      </if>
+      <if test="stats != null">
+        stats,
+      </if>        
+      <if test="createtime != null">
+        createtime,
+      </if> 
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+       #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="qrcodetext != null">
+        #{qrcodetext,jdbcType=BLOB},
+      </if>
+      <if test="pathqrcode != null">
+        #{pathqrcode,jdbcType=VARCHAR},
+      </if>
+      <if test="stats != null">
+        #{stats,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if> 
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.louis.kitty.admin.model.SysQRCode">
+    update sys_qrcode
+    <set>
+      <if test="name != null">
+       name=#{name,jdbcType=VARCHAR},
+      </if>
+      <if test="qrcodetext != null">
+       qrcodetext= #{qrcodetext,jdbcType=BLOB},
+      </if>
+      <if test="pathqrcode != null">
+        pathqrcode=#{pathqrcode,jdbcType=VARCHAR},
+      </if>
+      <if test="stats != null">
+        stats=#{stats,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime=#{createtime,jdbcType=TIMESTAMP},    
+       </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.louis.kitty.admin.model.SysQRCode">
+    update sys_qrcode
+    set  
+        name=#{name,jdbcType=VARCHAR},
+        qrcodetext= #{qrcodetext,jdbcType=BLOB},
+        pathqrcode=#{pathqrcode,jdbcType=VARCHAR}, 
+        stats=#{stats,jdbcType=VARCHAR},
+        createtime=#{createtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="findPage" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_qrcode
+  </select>
+  <select id="findPageByLabel" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	<bind name="pattern" value="'%' + _parameter.name + '%'" />
+  	select 
+    <include refid="Base_Column_List" />
+     from sys_qrcode
+     where name like #{pattern}
+  </select>
+  <select id="findByLable" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_qrcode
+    where name = #{name,jdbcType=VARCHAR}
+  </select>
+  <select id="findName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_qrcode
+    where name = #{name,jdbcType=VARCHAR}
+  </select>
+  <select id="findPageByFilters" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+ 	select 
+   <include refid="Base_Column_List" />
+    from sys_qrcode
+   <where>
+    	1=1
+   <if test="name != null and name != '' ">
+    and name like concat('%',#{name},'%')
+	</if>
+	<if test="stats != null and stats != '' ">
+	and stats like concat('%',#{stats},'%')
+	</if>
+	</where>	
+ </select>
+</mapper>

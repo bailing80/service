@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="kitty-admin/src/main/java"/>
+	<classpathentry kind="src" path="kitty-common/src/main/java"/>
+	<classpathentry kind="src" path="kitty-conifg/src/main/java"/>
+	<classpathentry kind="src" path="kitty-consumer/src/main/java"/>
+	<classpathentry kind="src" path="kitty-core/src/main/java"/>
+	<classpathentry kind="src" path="kitty-monitor/src/main/java"/>
+	<classpathentry kind="src" path="yian-ui/src/main/java"/>
+	<classpathentry kind="lib" path="kitty-admin/.mvn/wrapper/maven-wrapper.jar"/>
+	<classpathentry kind="lib" path="kitty-admin/target/kitty-admin-1.0.0.jar"/>
+	<classpathentry kind="lib" path="kitty-common/.mvn/wrapper/maven-wrapper.jar"/>
+	<classpathentry kind="lib" path="kitty-common/target/kitty-common-1.0.0.jar"/>
+	<classpathentry kind="lib" path="kitty-conifg/.mvn/wrapper/maven-wrapper.jar"/>
+	<classpathentry kind="lib" path="kitty-conifg/target/kitty-config-1.0.0.jar"/>
+	<classpathentry kind="lib" path="kitty-consul/.mvn/wrapper/maven-wrapper.jar"/>
+	<classpathentry kind="lib" path="kitty-consumer/.mvn/wrapper/maven-wrapper.jar"/>
+	<classpathentry kind="lib" path="kitty-consumer/target/kitty-consumer-1.0.0.jar"/>
+	<classpathentry kind="lib" path="kitty-core/.mvn/wrapper/maven-wrapper.jar"/>
+	<classpathentry kind="lib" path="kitty-core/target/kitty-core-1.0.0.jar"/>
+	<classpathentry kind="lib" path="kitty-monitor/.mvn/wrapper/maven-wrapper.jar"/>
+	<classpathentry kind="lib" path="kitty-monitor/target/kitty-monitor-1.0.0.jar"/>
+	<classpathentry kind="lib" path="kitty-pom/.mvn/wrapper/maven-wrapper.jar"/>
+	<classpathentry kind="lib" path="yian-ui/target/yian-ui-1.0.0.jar"/>
+	<classpathentry kind="output" path="kitty-admin/target/classes"/>
+</classpath>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yian.admin.dao.CardProductMapper">
+  <resultMap id="BaseResultMap" type="com.louis.kitty.admin.model.CardProduct">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="productmodel" jdbcType="VARCHAR" property="productmodel" />
+    <result column="ceset" jdbcType="VARCHAR" property="ceset" />
+    <result column="serialnumber" jdbcType="VARCHAR" property="serialnumber" />
+    <result column="model" jdbcType="VARCHAR" property="model" />
+    <result column="expiration" jdbcType="VARCHAR" property="expiration" />    
+    <result column="manmade" jdbcType="VARCHAR" property="manmade" />
+  </resultMap>
+ 
+  <sql id="Base_Column_List">
+    id,productmodel,ceset,serialnumber,model,expiration,manmade
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from card_product
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from card_product
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  
+  <insert id="insertSelective" parameterType="com.louis.kitty.admin.model.CardProduct">
+    insert into card_product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+ 	  <if test="productmodel != null">
+        productmodel,
+      </if>
+      <if test="ceset != null">
+        ceset,
+      </if>   
+      <if test="serialnumber != null">
+        serialnumber,
+      </if>
+      <if test="model != null">
+        model,
+      </if>
+ 	  <if test="expiration != null">
+        expiration,
+      </if> 
+      <if test="manmade != null">
+        manmade,
+      </if>
+     
+    </trim>
+   
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="productmodel != null">
+       #{productmodel,jdbcType=VARCHAR},
+      </if>
+      <if test="ceset != null">
+       #{ceset,jdbcType=VARCHAR},
+      </if>
+      <if test="serialnumber != null">
+        #{serialnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="model != null">
+        #{model,jdbcType=VARCHAR},
+      </if>
+      <if test="expiration != null">
+        #{expiration,jdbcType=VARCHAR},
+      </if>
+       <if test="manmade != null">
+        #{manmade,jdbcType=VARCHAR}, 
+       </if>
+    
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.louis.kitty.admin.model.CardProduct">
+    update card_product
+    <set>
+       <if test="productmodel != null">
+       productmodel=#{productmodel,jdbcType=VARCHAR},
+      </if>
+      <if test="ceset != null">
+       ceset=#{ceset,jdbcType=VARCHAR},
+      </if>
+      <if test="serialnumber != null">
+       serialnumber= #{serialnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="model != null">
+        model=#{model,jdbcType=VARCHAR},
+      </if>
+      <if test="expiration != null">
+        expiration=#{expiration,jdbcType=VARCHAR},
+      </if>
+       <if test="manmade != null">
+        manmade=#{manmade,jdbcType=VARCHAR}, 
+       </if>
+    </set>
+       where id = #{id,jdbcType=BIGINT}
+  	</update>
+
+
+	 <select id="findByLable" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select id,productmodel,serialnumber	   
+	    from card_product	    
+	    where serialnumber = #{serialnumber,jdbcType=VARCHAR}
+	  
+	  </select>
+  
+ 
+</mapper>

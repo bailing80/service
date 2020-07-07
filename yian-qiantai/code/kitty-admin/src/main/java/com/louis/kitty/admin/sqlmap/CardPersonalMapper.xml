@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.louis.kitty.admin.dao.CardPersonalMapper">
+  <resultMap id="BaseResultMap" type="com.louis.kitty.admin.model.CardPersonal">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="customercode" jdbcType="VARCHAR" property="customercode" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="age" jdbcType="VARCHAR" property="age" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="buychannel" jdbcType="VARCHAR" property="buychannel" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="serialnumber" jdbcType="VARCHAR" property="serialnumber" />
+    <result column="productmodel" jdbcType="VARCHAR" property="productmodel" />
+    <result column="purchasedate" jdbcType="TIMESTAMP" property="purchasedate" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id,customercode,name,sex,age,telephone,buychannel,province,city,serialnumber,productmodel,purchasedate,createtime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from card_personal
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from card_personal
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.louis.kitty.admin.model.CardPersonal">
+    insert into card_personal (id,customercode,name,sex,age,telephone,buychannel,province,city,serialnumber,productmodel,purchasedate,createtime)
+     values 
+      ( #{id,jdbcType=BIGINT}, #{customercode,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      	#{sex,jdbcType=VARCHAR},#{age,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{buychannel,jdbcType=VARCHAR}, 
+      	#{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{serialnumber,jdbcType=VARCHAR}, #{productmodel,jdbcType=VARCHAR}, 
+      	#{purchasedate,jdbcType=TIMESTAMP}, #{createtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.louis.kitty.admin.model.CardPersonal">
+    insert into card_personal
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+ 	  <if test="customercode != null">
+        customercode,
+      </if>
+      <if test="name != null">
+        name,
+      </if>   
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+ 	  <if test="telephone != null">
+        telephone,
+      </if> 
+      <if test="buychannel != null">
+        buychannel,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="serialnumber != null">
+        serialnumber,
+      </if>
+      <if test="productmodel != null">
+        productmodel,
+      </if>   
+      <if test="purchasedate != null and purchasedate != ''">
+        purchasedate,
+      </if>
+       <if test="createtime != null">
+        createtime,
+      </if> 
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="customercode != null">
+       #{customercode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+       #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+       <if test="buychannel != null">
+        #{buychannel,jdbcType=VARCHAR}, 
+       </if>
+       <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+       </if>
+       <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+       </if>
+       <if test="serialnumber != null">
+        #{serialnumber,jdbcType=VARCHAR},
+      </if>
+       <if test="productmodel != null">
+       #{productmodel,jdbcType=VARCHAR},
+      </if>
+      <if test="purchasedate != null and purchasedate != ''">
+        #{purchasedate,jdbcType=TIMESTAMP},
+      </if>
+       <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+       </if> 
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.louis.kitty.admin.model.CardPersonal">
+    update card_personal
+    <set>
+      <if test="customercode != null">
+       customercode=#{customercode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+       name=#{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+       sex= #{sex,jdbcType=VARCHAR},
+      </if>      
+      <if test="age != null">
+        age=#{age,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        telephone=#{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="buychannel != null">
+        buychannel=#{buychannel,jdbcType=VARCHAR}, 
+       </if>
+       <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+       </if>
+       <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+       </if>
+      <if test="serialnumber != null">
+       serialnumber= #{serialnumber,jdbcType=VARCHAR},
+      </if>
+       <if test="productmodel != null">
+       productmodel=#{productmodel,jdbcType=VARCHAR},
+      </if> 
+      <if test="purchasedate != null and purchasedate != ''">
+       purchasedate= #{purchasedate,jdbcType=TIMESTAMP},
+      </if>     
+       <if test="createtime != null">
+        createtime=#{createtime,jdbcType=TIMESTAMP},    
+       </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  	</update>
+  <update id="updateByPrimaryKey" parameterType="com.louis.kitty.admin.model.CardPersonal">
+    update card_personal
+    set
+    	customercode=#{customercode,jdbcType=VARCHAR},
+        name=#{name,jdbcType=VARCHAR},         
+        sex= #{sex,jdbcType=VARCHAR},        
+        age=#{age,jdbcType=VARCHAR}, 
+        telephone=#{telephone,jdbcType=VARCHAR},
+        buychannel=#{buychannel,jdbcType=VARCHAR},
+        province = #{province,jdbcType=VARCHAR},
+        city = #{city,jdbcType=VARCHAR},
+        serialnumber= #{serialnumber,jdbcType=VARCHAR},
+        productmodel=#{productmodel,jdbcType=VARCHAR},            
+        purchasedate= #{purchasedate,jdbcType=TIMESTAMP}, 
+        createtime=#{createtime,jdbcType=TIMESTAMP}        
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="findPage" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from card_personal
+  </select>
+    <select id="findPageByFilters" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from card_personal
+    <where>
+     	1=1
+	<if test="customercode != null and customercode != '' ">
+		and customercode like concat('%',#{customercode},'%')
+	</if>
+    <if test="name != null and name != '' ">
+	    and name like concat('%',#{name},'%')
+	</if>
+	<if test="telephone != null and telephone != '' ">
+		and telephone like concat('%',#{telephone},'%')
+	</if>
+    <if test="sex != null and sex != '' ">
+	    and sex like concat('%',#{sex},'%')
+	</if>
+	<if test="buychannel != null and buychannel != '' ">
+	    and buychannel like concat('%',#{buychannel},'%')
+	</if>
+	<if test="province != null and province != '' ">
+	    and province like concat('%',#{province},'%')
+	</if>
+	<if test="city != null and city != '' ">
+	    and city like concat('%',#{city},'%')
+	</if>
+	<if test="startTime != null and startTime != '' and endTime != null and endTime != '' ">
+	   <![CDATA[ and DATE_FORMAT(createtime, '%Y-%m-%d') BETWEEN DATE_FORMAT(#{startTime}, '%Y-%m-%d') AND DATE_FORMAT(#{endTime}, '%Y-%m-%d') ]]>
+	</if>
+	</where>
+	order by createtime DESC 	
+  </select>
+  <select id="findPageByLabel" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	<bind name="pattern" value="'%' + _parameter.name + '%'" />
+  	select 
+    <include refid="Base_Column_List" />
+     from card_personal
+     where name like #{pattern}
+  </select>
+  <select id="findByLable" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from card_personal
+    where name = #{name,jdbcType=VARCHAR}
+  </select>
+    <select id="findClient" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from card_personal
+    where serialnumber = #{serialnumber,jdbcType=VARCHAR}
+   	</select>  
+   	<select id="getLatestCustomercode" resultMap="BaseResultMap">
+  	select
+  	<include refid="Base_Column_List" />
+  	from card_personal 
+  	ORDER BY customercode DESC limit 1
+  </select>
+</mapper>

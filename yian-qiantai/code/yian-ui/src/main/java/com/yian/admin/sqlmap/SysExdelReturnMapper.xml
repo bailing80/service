@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yian.admin.dao.SysExdelReturnMapper">
+  <resultMap id="BaseResultMap" type="com.yian.admin.model.SysExdelReturn">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="message" jdbcType="VARCHAR" property="message" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="statusExp" jdbcType="INTEGER" property="statusExp" />
+    <result column="conditionA" jdbcType="VARCHAR" property="conditionA" />
+    <result column="ischeck" jdbcType="INTEGER" property="ischeck" />
+    <result column="com" jdbcType="VARCHAR" property="com" />
+    <result column="nu" jdbcType="VARCHAR" property="nu" />
+    <result column="data" jdbcType="VARCHAR" property="data" />
+
+  </resultMap>
+   <sql id="Base_Column_List">
+    id,message,state,statusExp,conditionA,ischeck,com,nu,data
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mark_expdelivreturn
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from mark_expdelivreturn
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yian.admin.model.SysExdelReturn">
+    insert into mark_expdelivreturn (id,message,state,statusExp,conditionA,ischeck,com,nu,data)
+     values 
+      ( #{id,jdbcType=BIGINT}, #{message,jdbcType=VARCHAR},#{state,jdbcType=INTEGER},  
+      	#{statusExp,jdbcType=INTEGER},#{conditionA,jdbcType=VARCHAR},#{ischeck,jdbcType=INTEGER}, 
+      	#{com,jdbcType=VARCHAR}, #{nu,jdbcType=VARCHAR},#{data,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yian.admin.model.SysExdelReturn">
+    insert into mark_expdelivreturn
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="message != null">
+        message,
+      </if>
+      <if test="state != null">
+        state,
+      </if>    
+      <if test="statusExp != null">
+        statusExp,
+      </if>
+      <if test="conditionA != null">
+        conditionA,
+      </if>
+      <if test="ischeck != null">
+        ischeck,
+      </if>
+      <if test="com != null">
+        com,
+      </if>
+      <if test="nu != null">
+      	nu,
+      </if>
+      <if test="data != null">
+      	data,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="message != null">
+       #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="statusExp != null">
+        #{statusExp,jdbcType=INTEGER},
+      </if>
+      <if test="conditionA != null">
+        #{conditionA,jdbcType=VARCHAR},
+      </if>
+      <if test="ischeck != null">
+        #{ischeck,jdbcType=INTEGER},
+      </if>
+      <if test="com != null">
+        #{com,jdbcType=VARCHAR},
+      </if>
+      <if test="nu != null">
+        #{nu,jdbcType=VARCHAR},
+      </if>
+      <if test="data != null">
+        #{data,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yian.admin.model.SysExdelReturn">
+    update mark_expdelivreturn
+    <set>
+      <if test="message != null">
+       message=#{message,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+       state= #{state,jdbcType=INTEGER},
+      </if>
+      <if test="statusExp != null">
+       statusExp=#{statusExp,jdbcType=INTEGER},
+      </if>
+      <if test="conditionA != null">
+       conditionA= #{conditionA,jdbcType=VARCHAR},
+      </if>
+      <if test="ischeck != null">
+       ischeck= #{ischeck,jdbcType=INTEGER},
+      </if>
+      <if test="com != null">
+       com=#{com,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null">
+       num= #{num,jdbcType=VARCHAR},
+      </if>
+      <if test="data != null">
+       data= #{data,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yian.admin.model.SysExdelReturn">
+    update mark_expdelivreturn
+    set  
+        message=#{message,jdbcType=VARCHAR},
+        state= #{state,jdbcType=INTEGER},
+        statusExp= #{statusExp,jdbcType=INTEGER},
+        conditionA= #{conditionA,jdbcType=VARCHAR},    
+		ischeck= #{ischeck,jdbcType=INTEGER},     
+        com= #{com,jdbcType=VARCHAR},      
+        num= #{num,jdbcType=VARCHAR},
+        data= #{data,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="findPage" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mark_expdelivreturn
+  </select>
+</mapper>

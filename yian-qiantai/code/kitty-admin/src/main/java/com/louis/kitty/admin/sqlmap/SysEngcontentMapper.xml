@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.louis.kitty.admin.dao.SysEngcontentMapper">
+  <resultMap id="BaseResultMap" type="com.louis.kitty.admin.model.SysEngcontent">
+    <id column="id" jdbcType="BIGINT" property="id" />
+     <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="httpurl" jdbcType="VARCHAR" property="httpurl" />
+    <result column="picture" jdbcType="VARCHAR" property="picture" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    id,status,httpurl,picture
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from engcontent
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+ 
+ 	<select id="selectList" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select * from engcontent
+    where  status = #{status,jdbcType=VARCHAR}
+  </select>
+  
+</mapper>

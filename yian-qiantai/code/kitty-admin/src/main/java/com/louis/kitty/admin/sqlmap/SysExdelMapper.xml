@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.louis.kitty.admin.dao.SysExdelMapper">
+  <resultMap id="BaseResultMap" type="com.louis.kitty.admin.model.SysExdel">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="activityname" jdbcType="VARCHAR" property="activityname" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="toLocation" jdbcType="VARCHAR" property="toLocation" />
+    <result column="fromLocation" jdbcType="VARCHAR" property="fromLocation" />
+    <result column="expressName" jdbcType="VARCHAR" property="expressName" />
+    <result column="expressNumber" jdbcType="VARCHAR" property="expressNumber" />
+    <result column="giftname" jdbcType="VARCHAR" property="giftname" />
+    <result column="statusExp" jdbcType="VARCHAR" property="statusExp" />
+    <result column="giftSend" jdbcType="VARCHAR" property="giftSend" />
+    <result column="sparam" jdbcType="VARCHAR" property="sparam" />
+    <result column="sign" jdbcType="VARCHAR" property="sign" />
+    <result column="sendtime" jdbcType="TIMESTAMP" property="sendtime" />
+   	<result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+  </resultMap>
+  <resultMap id="ClientAndExpressMap" type="com.louis.kitty.admin.model.SysClientAndExpress">
+  	<id column="id" jdbcType="BIGINT" property="id" />
+  	<result column="activityname" jdbcType="VARCHAR" property="activityname" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="toLocation" jdbcType="VARCHAR" property="toLocation" />
+    <result column="fromLocation" jdbcType="VARCHAR" property="fromLocation" />
+    <result column="expressName" jdbcType="VARCHAR" property="expressName" />
+    <result column="expressNumber" jdbcType="VARCHAR" property="expressNumber" />
+    <result column="giftname" jdbcType="VARCHAR" property="giftname" />
+    <result column="giftSend" jdbcType="VARCHAR" property="giftSend" />
+    <result column="sendtime" jdbcType="TIMESTAMP" property="sendtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id,activityname,name,telephone,toLocation,fromLocation,expressName,expressNumber,giftname,statusExp,giftSend,sparam,sign,sendtime,del_flag
+  </sql>
+  <sql id="Client_and_express_List">
+    id,activityname,name,telephone,toLocation,fromLocation,expressName,expressNumber,giftname,giftsend,sendtime
+  </sql>
+  <select id="exportClientAndExpress" resultMap="ClientAndExpressMap">
+    select id,activityname,name,telephone,toLocation,fromLocation,expressName,expressNumber,giftname,giftsend,sendtime
+    <include refid="Client_and_express_List" />
+    from mark_expressdelivery
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mark_expressdelivery
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from mark_expressdelivery
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+ 
+  <insert id="insertSelective" parameterType="com.louis.kitty.admin.model.SysExdel">
+    insert into mark_expressdelivery
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="activityname != null">
+        activityname,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>    
+      <if test="toLocation != null">
+        toLocation,
+      </if>
+      <if test="fromLocation != null">
+        fromLocation,
+      </if>
+      <if test="expressName != null">
+        expressName,
+      </if>
+      <if test="expressNumber != null">
+        expressNumber,
+      </if>
+      <if test="giftname != null">
+        giftname,
+      </if>
+      <if test="statusExp != null">
+        statusExp,
+      </if>
+      <if test="giftSend != null">
+      	giftSend,
+      </if>
+      <if test="sparam != null">
+      	sparam,
+      </if>
+      <if test="sign != null">
+      	sign,
+      </if>
+      <if test="sendtime != null">
+        sendtime,
+      </if> 
+      <if test="delFlag != null">
+        del_flag,
+      </if>  
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="activityname != null">
+       #{activityname,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+       #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="toLocation != null">
+        #{toLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="fromLocation != null">
+        #{fromLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="expressName != null">
+        #{expressName,jdbcType=VARCHAR},
+      </if>
+      <if test="expressNumber != null">
+        #{expressNumber,jdbcType=VARCHAR},
+      </if>
+	  <if test="giftname != null">
+        #{giftname,jdbcType=VARCHAR},
+      </if>
+      <if test="statusExp != null">
+        #{statusExp,jdbcType=VARCHAR},
+      </if>
+      <if test="giftSend != null">
+        #{giftSend,jdbcType=VARCHAR},
+      </if>
+      <if test="sparam != null">
+        #{sparam,jdbcType=VARCHAR},
+      </if>
+      <if test="sign != null">
+        #{sign,jdbcType=VARCHAR},
+      </if>
+      <if test="sendtime != null">
+        #{sendtime,jdbcType=TIMESTAMP},
+      </if> 
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.louis.kitty.admin.model.SysExdel">
+    update mark_expressdelivery
+    <set>
+      <if test="activityname != null">
+       activityname=#{activityname,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+       name=#{name,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+       telephone= #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="toLocation != null">
+       toLocation=#{toLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="fromLocation != null">
+       fromLocation= #{fromLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="expressName != null">
+       expressName= #{expressName,jdbcType=VARCHAR},
+      </if>
+      <if test="expressNumber != null">
+       expressNumber=#{expressNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="giftname != null">
+       giftname=#{giftname,jdbcType=VARCHAR},
+      </if>
+      <if test="statusExp != null">
+       statusExp=#{statusExp,jdbcType=VARCHAR},
+      </if>
+      <if test="giftSend != null">
+       giftSend= #{giftSend,jdbcType=VARCHAR},
+      </if>
+      <if test="sparam != null">
+       sparam= #{sparam,jdbcType=VARCHAR},
+      </if>
+      <if test="sign != null">
+        sign=#{sign,jdbcType=VARCHAR},
+      </if>
+      <if test="sendtime != null">
+        sendtime=#{sendtime,jdbcType=TIMESTAMP},    
+       </if>
+       <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=TINYINT},
+      </if>
+    </set>
+    <where> 1=1
+         <if test="id != null">
+         and  id = #{id,jdbcType=BIGINT}
+        </if>
+        <if test="activityname != null">
+        and  activityname = #{activityname,jdbcType=VARCHAR}
+        </if>
+        <if test="name != null">
+        and  name = #{name,jdbcType=VARCHAR}
+        </if>
+        <if test="telephone != null">
+         and telephone = #{telephone,jdbcType=VARCHAR}
+         </if>
+    </where>
+  </update>
+ 
+  <update id="updateExpressStatus" parameterType="java.lang.String">
+    update mark_expressdelivery
+    <set>
+      <if test="statusExp != null">
+       statusExp= #{statusExp,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where activityname = #{activityname,jdbcType=VARCHAR} and name = #{name,jdbcType=VARCHAR} and telephone = #{telephone,jdbcType=VARCHAR}
+  </update>
+  <select id="findPage" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mark_expressdelivery
+  </select>
+  <select id="findPageByFilters" parameterType="java.util.HashMap" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+     from mark_expressdelivery
+    <where>
+     	1=1
+    <if test="name != null and name != '' ">
+	    and name like concat('%',#{name},'%')
+	</if>
+	<if test="telephone != null and telephone != '' ">
+		and telephone like concat('%',#{telephone},'%')
+	</if>
+	    <if test="expressName != null and expressName != '' ">
+	    and expressName like concat('%',#{expressName},'%')
+	</if>
+	<if test="statusExp != null and statusExp != '' ">
+		and statusExp like concat('%',#{statusExp},'%')
+	</if>
+	<if test="giftSend != null and giftSend != '' ">
+		and giftSend like concat('%',#{giftSend},'%')
+	</if>
+	<if test="startTime != null and startTime != '' and endTime != null and endTime != '' ">
+	   <![CDATA[ and DATE_FORMAT(sendtime, '%Y-%m-%d') BETWEEN DATE_FORMAT(#{startTime}, '%Y-%m-%d') AND DATE_FORMAT(#{endTime}, '%Y-%m-%d') ]]>
+	</if>
+	</where>	
+  </select>
+  <select id="findPageByLabel" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	<bind name="pattern" value="'%' + _parameter.name + '%'" />
+  	select 
+    <include refid="Base_Column_List" />
+     from mark_expressdelivery
+     where name like #{pattern}
+  </select>
+  <select id="findByLable" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mark_expressdelivery
+    where name = #{name,jdbcType=VARCHAR}
+  </select>
+  <select id="isExist" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mark_expressdelivery
+    where activityname = #{activityname,jdbcType=VARCHAR} and name = #{name,jdbcType=VARCHAR} and telephone = #{telephone,jdbcType=VARCHAR}
+   </select>
+</mapper>
