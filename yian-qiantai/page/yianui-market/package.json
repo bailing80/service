@@ -30,7 +30,7 @@
     "vue-video-player": "^5.0.2",
     "vuex": "^3.0.1",
     "webrtc-adapter": "^7.5.1",
-    "xlsx": "^0.15.1"
+    "xlsx": "^0.17.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
