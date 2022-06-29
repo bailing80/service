@@ -32,7 +32,7 @@
 		<spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
 		<docker.image.prefix>kitty</docker.image.prefix>
 		<lombok.version>1.18.8</lombok.version>
-		<execl.version>3.9</execl.version>
+		<execl.version>4.1.1</execl.version>
 		<poi.version>3.9</poi.version>
 		
 	</properties>
